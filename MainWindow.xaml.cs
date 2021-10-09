@@ -1,18 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 using Ethereum_Test2.src;
 using src;
@@ -20,6 +8,8 @@ using Contract = Nethereum.Contracts.Contract;
 
 using static Ethereum_Test2.src.Ethernet;
 using static src.Toaster;
+using Ethereum_Test2.src.logger;
+using System.Threading;
 
 namespace Ethereum_Test2 {
     /// <summary>
@@ -27,31 +17,54 @@ namespace Ethereum_Test2 {
     /// </summary>
     public partial class MainWindow : Window {
 
-        private string v1 = "";
         private readonly Ethernet ether = new Ethernet(Crypto.LOCAL);
         private readonly Toaster toast = new Toaster();
+        private bool updaterRunning = true;
+        private bool updaterBackground = true;
+        private readonly SynchronizationContext synchronizationContext;
         public MainWindow() {
             InitializeComponent();
             MainGrid.Children.Add(toast.GetToast());
-            this.Combobox.ItemsSource = new string[] { "Local", "Test"};
+            this.Combobox.ItemsSource = new string[] { "Local", "Test" };
             this.Combobox.SelectedValue = "Local";
+            Log.StartLogger();
+
+            synchronizationContext = SynchronizationContext.Current;
+            TextBoxText.Text = Log.GetLog();
+            Background.Content = "Background: " + updaterBackground;
+            Task thread = new Task(Update);
+            thread.Start();
+        }
+        private async void Update() {
+            while (updaterRunning) {
+                if (updaterBackground) {
+                    await Task.Delay(500);
+                    synchronizationContext.Post(new SendOrPostCallback((object o) => {
+                        bool scrollDown = TextBoxText.VerticalOffset + TextBoxText.ViewportHeight >= TextBoxText.ExtentHeight;
+                        TextBoxText.Text = Log.GetLog();
+                        if (scrollDown) {
+                            TextBoxText.ScrollToEnd();
+                        }
+                    }), null);
+                }
+            }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e) {
+        private void GetAccountBalanceButton(object sender, RoutedEventArgs e) {
             _ = this.ether.GetAccountBalance(ether.EnvAccount);
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e) {
-            LabelOutput.Content = this.ether.AccBal;
+        private void AccBalButton(object sender, RoutedEventArgs e) {
+            Log.InfoLog(this.ether.AccBal);
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e) {
+        private void GetContractButton(object sender, RoutedEventArgs e) {
             Contract cont = ether.GetContract(ether.EnvContractAccount);
-            toast.PopToastie(cont.)
+            _ = ether.GetHashFromContract();
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            switch(((ComboBox)sender).SelectedValue.ToString()){
+            switch (((ComboBox)sender).SelectedValue.ToString()) {
                 case "Local":
                     ether.SetEnvironment(Crypto.LOCAL);
                     break;
@@ -59,6 +72,35 @@ namespace Ethereum_Test2 {
                     ether.SetEnvironment(Crypto.ROPSTEN);
                     break;
             }
+        }
+
+        private void MemeHashButton(object sender, RoutedEventArgs e) {
+            Log.InfoLog(this.ether.MemeHash);
+        }
+
+        private void SetHashForContractButton(object sender, RoutedEventArgs e) {
+            _ = ether.SetHashForContract("nothing");
+        }
+
+        private void ErrorTestButton(object sender, RoutedEventArgs e) {
+            Log.ErrorLog("Error Test");
+        }
+
+        private void WarningTestButton(object sender, RoutedEventArgs e) {
+            Log.WarningLog("Warning Test");
+        }
+
+        private void ClearLogsButton(object sender, RoutedEventArgs e) {
+            Log.ClearLog();
+        }
+
+        private void InfoTestButton(object sender, RoutedEventArgs e) {
+            Log.InfoLog("Info Test");
+        }
+
+        private void BackgroundButton(object sender, RoutedEventArgs e) {
+            updaterBackground = !updaterBackground;
+            Background.Content = "Background: " + updaterBackground;
         }
     }
 }

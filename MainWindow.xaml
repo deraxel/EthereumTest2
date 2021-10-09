@@ -6,12 +6,19 @@
         xmlns:local="clr-namespace:Ethereum_Test2"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid x:Name="MainGrid">
+    <Grid x:Name="MainGrid" Background="#aaaaaa">
 
-        <Label x:Name ="LabelOutput" Content="" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="200" Height="100"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="460,306,0,0" VerticalAlignment="Top" Click="Button_Click"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="460,350,0,0" VerticalAlignment="Top" Click="Button_Click_1"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="233,350,0,0" VerticalAlignment="Top" Click="Button_Click_2"/>
-        <ComboBox x:Name ="Combobox"  HorizontalAlignment="Left" Margin="607,123,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBox_SelectionChanged"/>
+        <Button Content="GetAccountBalance" HorizontalAlignment="Left" Margin="615,277,0,0" VerticalAlignment="Top" Click="GetAccountBalanceButton"/>
+        <Button Content="AccBal" HorizontalAlignment="Left" Margin="682,328,0,0" VerticalAlignment="Top" Click="AccBalButton"/>
+        <Button Content="GetContract" HorizontalAlignment="Left" Margin="654,192,0,0" VerticalAlignment="Top" Click="GetContractButton" RenderTransformOrigin="0.437,0.844"/>
+        <ComboBox x:Name ="Combobox"  HorizontalAlignment="Left" Margin="601,21,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBox_SelectionChanged"/>
+        <Button Content="MemeHash" HorizontalAlignment="Left" Margin="658,234,0,0" VerticalAlignment="Top" Click="MemeHashButton"/>
+        <Button Content="SetHashForContract" HorizontalAlignment="Left" Margin="612,48,0,0" VerticalAlignment="Top" Click="SetHashForContractButton"/>
+        <TextBox x:Name="TextBoxText" Text="TextBox" TextWrapping="Wrap" Margin="0,0,204,0"/>
+        <Button Content="ErrorTest" HorizontalAlignment="Left" Margin="671,98,0,0" VerticalAlignment="Top" Click="ErrorTestButton"/>
+        <Button Content="WarningTest" HorizontalAlignment="Left" Margin="652,139,0,0" VerticalAlignment="Top" Click="WarningTestButton"/>
+        <Button Content="InfoTest" HorizontalAlignment="Left" Margin="676,69,0,0" VerticalAlignment="Top" Click="InfoTestButton"/>
+        <Button Content="ClearLogs" HorizontalAlignment="Left" Margin="665,167,0,0" VerticalAlignment="Top" Click="ClearLogsButton"/>
+        <Button x:Name="Background" Content="Background: True" HorizontalAlignment="Left" Margin="625,303,0,0" VerticalAlignment="Top" Click="BackgroundButton"/>
     </Grid>
 </Window>

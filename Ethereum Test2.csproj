@@ -8,7 +8,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Nethereum.ABI" Version="4.0.5" />
+    <PackageReference Include="Nethereum.Autogen.ContractApi" Version="3.6.2" />
+    <PackageReference Include="Nethereum.Contracts" Version="4.0.5" />
+    <PackageReference Include="Nethereum.Generators" Version="4.0.1" />
+    <PackageReference Include="Nethereum.Hex" Version="4.0.5" />
+    <PackageReference Include="Nethereum.JsonRpc.RpcClient" Version="4.0.5" />
+    <PackageReference Include="Nethereum.RPC" Version="4.0.5" />
     <PackageReference Include="Nethereum.Web3" Version="4.0.5" />
+    <PackageReference Include="xunit.assert" Version="2.4.1" />
   </ItemGroup>
 
 </Project>
