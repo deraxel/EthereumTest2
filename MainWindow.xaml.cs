@@ -22,6 +22,7 @@ namespace Ethereum_Test2 {
         private bool updaterRunning = true;
         private bool updaterBackground = true;
         private readonly SynchronizationContext synchronizationContext;
+        private readonly IPFS_Interact ipfs = new IPFS_Interact();
         public MainWindow() {
             InitializeComponent();
             MainGrid.Children.Add(toast.GetToast());
@@ -38,7 +39,7 @@ namespace Ethereum_Test2 {
         private async void Update() {
             while (updaterRunning) {
                 if (updaterBackground) {
-                    await Task.Delay(500);
+                    await Task.Delay(1);
                     synchronizationContext.Post(new SendOrPostCallback((object o) => {
                         bool scrollDown = TextBoxText.VerticalOffset + TextBoxText.ViewportHeight >= TextBoxText.ExtentHeight;
                         TextBoxText.Text = Log.GetLog();
@@ -79,7 +80,7 @@ namespace Ethereum_Test2 {
         }
 
         private void SetHashForContractButton(object sender, RoutedEventArgs e) {
-            _ = ether.SetHashForContract("nothing");
+            _ = ether.SetHashForContract("QmZHd1fbAsE4j281P69a9gR8UdoK3G8DsJ2G7oxVQ8osQ3");
         }
 
         private void ErrorTestButton(object sender, RoutedEventArgs e) {
@@ -101,6 +102,18 @@ namespace Ethereum_Test2 {
         private void BackgroundButton(object sender, RoutedEventArgs e) {
             updaterBackground = !updaterBackground;
             Background.Content = "Background: " + updaterBackground;
+        }
+
+        private void GetIPFSFileButton(object sender, RoutedEventArgs e) {
+            _ = ipfs.GetIPFSFile();
+        }
+
+        private void SetFileToIPFSButton(object sender, RoutedEventArgs e) {
+            Task.Run(sftipfs);
+        }
+
+        private async void sftipfs() {
+            Log.InfoLog(await ipfs.SetFileToIPFS(@"D:\Jason Howse\Pictures\Memes\atf dog meme.png"));
         }
     }
 }

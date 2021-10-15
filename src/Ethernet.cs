@@ -128,7 +128,7 @@ namespace Ethereum_Test2.src {
                 Contract cont = this.GetContract(EnvContractAccount);
                 Function setFunct = cont.GetFunction("set");
 
-                string transaction= await setFunct.SendTransactionAsync(localAccount, gas, value, hash);
+                string transaction = await setFunct.SendTransactionAsync(localAccount, gas, value, hash);
 
                 Log.InfoLog(transaction);
             } catch (Exception e) {
@@ -141,8 +141,5 @@ namespace Ethereum_Test2.src {
         private string DefaultmemeHash = "QmaNdRRK5rVxBiodg8fcSpiPoZHFJuqw5ackGFTacHbbKa";
         private string primaryDefaultHash = "QmZHd1fbAsE4j281P69a9gR8UdoK3G8DsJ2G7oxVQ8osQ3";
         private string atfmeme = "QmSgiPTvE9XZo6YvSs8Xw9HW311aAxLnz9qGqgZDNFj8xj";
-        
     }
 }
-//var transactionHash = await web3.Eth.DeployContract.SendRequestAsync(abi, byteCode, senderAddress, new HexBigInteger(900000), multiplier);
-//var receipt = await MineAndGetReceiptAsync(web3, transactionHash);

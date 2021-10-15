@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace Ethereum_Test2.src.logger {
     static class Log {
@@ -9,7 +7,7 @@ namespace Ethereum_Test2.src.logger {
         private static string _fileName;
 
         public static void StartLogger() {
-            _fileName = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "//log.log";
+            _fileName = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "//log.log";
             BeginningOfLog();
         }
 

@@ -8,17 +8,19 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid x:Name="MainGrid" Background="#aaaaaa">
 
-        <Button Content="GetAccountBalance" HorizontalAlignment="Left" Margin="615,277,0,0" VerticalAlignment="Top" Click="GetAccountBalanceButton"/>
-        <Button Content="AccBal" HorizontalAlignment="Left" Margin="682,328,0,0" VerticalAlignment="Top" Click="AccBalButton"/>
-        <Button Content="GetContract" HorizontalAlignment="Left" Margin="654,192,0,0" VerticalAlignment="Top" Click="GetContractButton" RenderTransformOrigin="0.437,0.844"/>
-        <ComboBox x:Name ="Combobox"  HorizontalAlignment="Left" Margin="601,21,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBox_SelectionChanged"/>
-        <Button Content="MemeHash" HorizontalAlignment="Left" Margin="658,234,0,0" VerticalAlignment="Top" Click="MemeHashButton"/>
-        <Button Content="SetHashForContract" HorizontalAlignment="Left" Margin="612,48,0,0" VerticalAlignment="Top" Click="SetHashForContractButton"/>
+        <Button Content="GetAccountBalance" HorizontalAlignment="Right" Margin="615,277,0,0" VerticalAlignment="Top" Click="GetAccountBalanceButton"/>
+        <Button Content="AccBal" HorizontalAlignment="Right" Margin="682,328,0,0" VerticalAlignment="Top" Click="AccBalButton"/>
+        <Button Content="GetContract" HorizontalAlignment="Right" Margin="654,192,0,0" VerticalAlignment="Top" Click="GetContractButton" RenderTransformOrigin="0.437,0.844"/>
+        <ComboBox x:Name ="Combobox"  HorizontalAlignment="Right" Margin="601,21,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBox_SelectionChanged"/>
+        <Button Content="MemeHash" HorizontalAlignment="Right" Margin="658,234,0,0" VerticalAlignment="Top" Click="MemeHashButton"/>
+        <Button Content="SetHashForContract" HorizontalAlignment="Right" Margin="612,48,0,0" VerticalAlignment="Top" Click="SetHashForContractButton"/>
         <TextBox x:Name="TextBoxText" Text="TextBox" TextWrapping="Wrap" Margin="0,0,204,0"/>
-        <Button Content="ErrorTest" HorizontalAlignment="Left" Margin="671,98,0,0" VerticalAlignment="Top" Click="ErrorTestButton"/>
-        <Button Content="WarningTest" HorizontalAlignment="Left" Margin="652,139,0,0" VerticalAlignment="Top" Click="WarningTestButton"/>
-        <Button Content="InfoTest" HorizontalAlignment="Left" Margin="676,69,0,0" VerticalAlignment="Top" Click="InfoTestButton"/>
-        <Button Content="ClearLogs" HorizontalAlignment="Left" Margin="665,167,0,0" VerticalAlignment="Top" Click="ClearLogsButton"/>
-        <Button x:Name="Background" Content="Background: True" HorizontalAlignment="Left" Margin="625,303,0,0" VerticalAlignment="Top" Click="BackgroundButton"/>
+        <Button Content="ErrorTest" HorizontalAlignment="Right" Margin="671,98,0,0" VerticalAlignment="Top" Click="ErrorTestButton"/>
+        <Button Content="WarningTest" HorizontalAlignment="Right" Margin="652,139,0,0" VerticalAlignment="Top" Click="WarningTestButton"/>
+        <Button Content="InfoTest" HorizontalAlignment="Right" Margin="676,69,0,0" VerticalAlignment="Top" Click="InfoTestButton"/>
+        <Button Content="ClearLogs" HorizontalAlignment="Right" Margin="665,167,0,0" VerticalAlignment="Top" Click="ClearLogsButton"/>
+        <Button x:Name="Background" Content="Background: True" HorizontalAlignment="Right" Margin="625,303,0,0" VerticalAlignment="Top" Click="BackgroundButton"/>
+        <Button Content="GetIPFSFile" HorizontalAlignment="Right" Margin="721,114,0,0" VerticalAlignment="Top" Click="GetIPFSFileButton"/>
+        <Button Content="SetFileToIPFS" HorizontalAlignment="Right" Margin="721,350,0,0" VerticalAlignment="Top" Click="SetFileToIPFSButton"/>
     </Grid>
 </Window>
