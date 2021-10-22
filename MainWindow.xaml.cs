@@ -23,6 +23,7 @@ namespace Ethereum_Test2 {
         private bool updaterBackground = true;
         private readonly SynchronizationContext synchronizationContext;
         private readonly IPFS_Interact ipfs = new IPFS_Interact();
+        private string updateString = "";
         public MainWindow() {
             InitializeComponent();
             MainGrid.Children.Add(toast.GetToast());
@@ -39,29 +40,39 @@ namespace Ethereum_Test2 {
         private async void Update() {
             while (updaterRunning) {
                 if (updaterBackground) {
-                    await Task.Delay(1);
+                    await Task.Delay(100);
                     synchronizationContext.Post(new SendOrPostCallback((object o) => {
                         bool scrollDown = TextBoxText.VerticalOffset + TextBoxText.ViewportHeight >= TextBoxText.ExtentHeight;
                         TextBoxText.Text = Log.GetLog();
                         if (scrollDown) {
                             TextBoxText.ScrollToEnd();
                         }
+
+                        if (updateString!=null && updateString.Length != 0) {
+                            Log.InfoLog(updateString);
+                            updateString = "";
+                        }
+
                     }), null);
                 }
             }
         }
 
         private void GetAccountBalanceButton(object sender, RoutedEventArgs e) {
+            Log.InfoLog("test - GetAccountBalance (stores acct ballance doesn't display)");
             _ = this.ether.GetAccountBalance(ether.EnvAccount);
         }
 
         private void AccBalButton(object sender, RoutedEventArgs e) {
+            Log.InfoLog("test - AccBal");
             Log.InfoLog(this.ether.AccBal);
         }
 
         private void GetContractButton(object sender, RoutedEventArgs e) {
+            Log.InfoLog("test - GetContract");
             Contract cont = ether.GetContract(ether.EnvContractAccount);
             _ = ether.GetHashFromContract();
+            Log.InfoLog(cont.ToString());
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
@@ -76,10 +87,12 @@ namespace Ethereum_Test2 {
         }
 
         private void MemeHashButton(object sender, RoutedEventArgs e) {
+            Log.InfoLog("test - MemeHash");
             Log.InfoLog(this.ether.MemeHash);
         }
 
         private void SetHashForContractButton(object sender, RoutedEventArgs e) {
+            Log.InfoLog("Test - SetHashForContractButton");
             _ = ether.SetHashForContract("QmZHd1fbAsE4j281P69a9gR8UdoK3G8DsJ2G7oxVQ8osQ3");
         }
 
@@ -105,15 +118,17 @@ namespace Ethereum_Test2 {
         }
 
         private void GetIPFSFileButton(object sender, RoutedEventArgs e) {
+            Log.InfoLog("Test - GetIPFSFile");
             _ = ipfs.GetIPFSFile();
         }
 
         private void SetFileToIPFSButton(object sender, RoutedEventArgs e) {
+            Log.InfoLog("Test - SetFileToIPFS");
             Task.Run(sftipfs);
         }
 
         private async void sftipfs() {
-            Log.InfoLog(await ipfs.SetFileToIPFS(@"D:\Jason Howse\Pictures\Memes\atf dog meme.png"));
+            updateString = await ipfs.SetFileToIPFS(@"D:\Jason Howse\Pictures\Memes\atf dog meme.png");
         }
     }
 }

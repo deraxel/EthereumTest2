@@ -8,16 +8,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Ipfs.Core" Version="0.55.0" />
+    <PackageReference Include="Ipfs.Engine" Version="0.13.0" />
     <PackageReference Include="Ipfs.Http.Client" Version="0.33.0" />
-    <PackageReference Include="Nethereum.ABI" Version="4.0.5" />
+    <PackageReference Include="Mime" Version="3.2.3" />
+    <PackageReference Include="MimeSharp" Version="1.0.0" />
+    <PackageReference Include="Nethereum.ABI" Version="4.1.0" />
     <PackageReference Include="Nethereum.Autogen.ContractApi" Version="3.6.2" />
-    <PackageReference Include="Nethereum.Contracts" Version="4.0.5" />
+    <PackageReference Include="Nethereum.Contracts" Version="4.1.0" />
     <PackageReference Include="Nethereum.Generators" Version="4.0.1" />
-    <PackageReference Include="Nethereum.Hex" Version="4.0.5" />
-    <PackageReference Include="Nethereum.JsonRpc.RpcClient" Version="4.0.5" />
-    <PackageReference Include="Nethereum.RPC" Version="4.0.5" />
-    <PackageReference Include="Nethereum.Web3" Version="4.0.5" />
+    <PackageReference Include="Nethereum.Hex" Version="4.1.0" />
+    <PackageReference Include="Nethereum.JsonRpc.RpcClient" Version="4.1.0" />
+    <PackageReference Include="Nethereum.RPC" Version="4.1.0" />
+    <PackageReference Include="Nethereum.Web3" Version="4.1.0" />
     <PackageReference Include="Pinata.Client" Version="1.0.0" />
+    <PackageReference Include="Winista.MimeDetect" Version="1.0.1" />
     <PackageReference Include="xunit.assert" Version="2.4.1" />
   </ItemGroup>
 

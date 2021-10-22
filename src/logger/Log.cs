@@ -24,13 +24,9 @@ namespace Ethereum_Test2.src.logger {
         private static void BeginningOfLog() {
             using (StreamWriter fs = File.AppendText(_fileName)) {
                 fs.WriteLine();
-                fs.WriteLine();
-                fs.WriteLine("======================================================");
-                fs.WriteLine();
+                fs.WriteLine("==============================================");
                 fs.WriteLine("New Log Started: " + DateTime.Now.ToString());
-                fs.WriteLine();
-                fs.WriteLine("======================================================");
-                fs.WriteLine();
+                fs.WriteLine("==============================================");
             }
         }
 
@@ -60,6 +56,11 @@ namespace Ethereum_Test2.src.logger {
 
         public static string GetLog() {
             return File.ReadAllText(_fileName);
+        }
+
+        internal static void ErrorLog(Exception e) {
+            ErrorLog(e.Message.ToString());
+            ErrorLog(e.StackTrace.ToString());
         }
     }
 }
